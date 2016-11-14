@@ -1,3 +1,5 @@
+require 'thor'
+
 module Netjockey
   # Class for Netjockey command line interface
   class CLI < Thor
