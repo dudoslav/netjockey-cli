@@ -1,6 +1,7 @@
-require 'net/http'
-require 'json'
-require 'thor'
-
-require 'netjockey/service'
-require 'netjockey/cli'
+# Main Netjockey module
+module Netjockey
+  autoload :Service, 'netjockey/service'
+  autoload :CLI, 'netjockey/cli'
+  autoload :Entities, 'netjockey/entities'
+  autoload :Errors, 'netjockey/errors'
+end
