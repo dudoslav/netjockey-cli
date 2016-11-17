@@ -18,11 +18,11 @@ module Netjockey
       end
 
       def self.check_hash!(song_hash)
-        raise InvalidEntityHashError \
+        raise Errors::InvalidEntityHashError \
           unless %w(duration
                     title
                     id
-                    thumbnail_url
+                    thumbnailUrl
                     uuid).all? { |k| song_hash.key? k }
       end
     end

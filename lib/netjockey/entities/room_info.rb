@@ -11,7 +11,7 @@ module Netjockey
       end
 
       def self.check_hash!(room_info_hash)
-        raise InvalidEntityHashError \
+        raise Errors::InvalidEntityHashError \
           unless %w(name id).all? { |k| room_info_hash.key? k }
       end
     end

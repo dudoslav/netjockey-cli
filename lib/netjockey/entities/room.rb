@@ -14,10 +14,10 @@ module Netjockey
       end
 
       def self.check_hash!(room_hash)
-        raise InvalidEntityHashError \
-          unless %w(room_info
-                    current_song_time
-                    song_queue).all? { |k| room_hash.key? k }
+        raise Errors::InvalidEntityHashError, 'room hash is invalid' \
+          unless %w(roomInfo
+                    currentSongTime
+                    songQueue).all? { |k| room_hash.key? k }
       end
     end
   end

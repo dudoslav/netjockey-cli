@@ -10,7 +10,7 @@ module Netjockey
       end
 
       def self.check_hash!(song_queue_hash)
-        raise InvalidEntityHashError \
+        raise Errors::InvalidEntityHashError \
           unless song_queue_hash.key? 'playlist'
       end
     end
