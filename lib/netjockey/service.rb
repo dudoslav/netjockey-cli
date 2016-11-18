@@ -12,7 +12,7 @@ module Netjockey
       res = Net::HTTP.get_response(@url, '/v1/rooms')
       data = JSON.parse(res.body)
       data['rooms'].map do |room_info|
-        Entities::RoomInfo.new(room_info['name'], room_info['id'])
+        Entities::RoomInfo.from_hash(room_info)
       end
     end
 
@@ -21,28 +21,9 @@ module Netjockey
       case res
       when Net::HTTPSuccess then
         data = JSON.parse(res.body)
-        create_room(data)
+        Entities::Room.from_hash(data)
       when Net::HTTPNotFound then
         raise Errors::EntityNotFoundError, 'room does not exist'
-      end
-    end
-
-    private
-
-    def create_room(room_hash)
-      room_info = Entities::RoomInfo.new(room_hash['roomInfo']['name'],
-                                         room_hash['roomInfo']['id'])
-      Entities::Room.new(room_info,
-                         room_hash['currentSongTime'],
-                         create_songs(room_hash['queue']['playlist']))
-    end
-
-    def create_songs(song_queue_hash)
-      song_queue_hash.map do |song|
-        Entities::Song.new(song['duration'],
-                           song['title'], song['id'],
-                           song['thumbnailUrl'],
-                           song['uuid'])
       end
     end
   end
