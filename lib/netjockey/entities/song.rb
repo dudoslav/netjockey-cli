@@ -1,18 +1,18 @@
 module Netjockey
   module Entities
     # Class for storing Song entity
-    class Song < Struct.new(:duration,
-                            :title,
-                            :id,
-                            :thumbnail_url,
-                            :uuid)
+    Song = Struct.new(:duration,
+                      :title,
+                      :id,
+                      :thumbnail_url,
+                      :uuid) do
       def self.from_hash(song_hash)
         check_hash!(song_hash)
         song = Song.new
         song.duration = song_hash['duration']
         song.title = song_hash['title']
         song.id = song_hash['id']
-        song.thumbnail_url = song_hash['thumbnail_url']
+        song.thumbnail_url = song_hash['thumbnailUrl']
         song.uuid = song_hash['uuid']
         song
       end

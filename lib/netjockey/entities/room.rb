@@ -1,15 +1,15 @@
 module Netjockey
   module Entities
     # Class for storing Room entity
-    class Room < Struct.new(:room_info,
-                            :current_song_time,
-                            :song_queue)
+    Room = Struct.new(:room_info,
+                      :current_song_time,
+                      :song_queue) do
       def self.from_hash(room_hash)
         check_hash!(room_hash)
         room = Room.new
-        room.current_song_time = room_hash['current_song_time']
-        room.room_info = RoomInfo.from_hash(room_hash['room_info'])
-        room.song_queue = SongQueue.from_hash(room_hash['song_queue'])
+        room.current_song_time = room_hash['currentSongTime']
+        room.room_info = RoomInfo.from_hash(room_hash['roomInfo'])
+        room.song_queue = SongQueue.from_hash(room_hash['queue'])
         room
       end
 
@@ -17,7 +17,7 @@ module Netjockey
         raise Errors::InvalidEntityHashError, 'room hash is invalid' \
           unless %w(roomInfo
                     currentSongTime
-                    songQueue).all? { |k| room_hash.key? k }
+                    queue).all? { |k| room_hash.key? k }
       end
     end
   end

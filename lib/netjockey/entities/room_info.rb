@@ -1,7 +1,7 @@
 module Netjockey
   module Entities
     # Class for storing RoomInfo entity
-    class RoomInfo < Struct.new(:name, :id)
+    RoomInfo = Struct.new(:name, :id) do
       def self.from_hash(room_info_hash)
         check_hash!(room_info_hash)
         room_info = RoomInfo.new

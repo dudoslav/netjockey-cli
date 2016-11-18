@@ -1,7 +1,7 @@
 module Netjockey
   module Entities
     # Class for storing SongQueue entity
-    class SongQueue < Struct.new(:playlist)
+    SongQueue = Struct.new(:playlist) do
       def self.from_hash(song_queue_hash)
         check_hash!(song_queue_hash)
         song_queue_hash['playlist'].map do |song|
